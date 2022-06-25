@@ -1,0 +1,10 @@
+{
+    "name": "phybox-core",
+    "version": "0.0.1",
+    "description": "Basic 2d physics engine for HTML canvas",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "files": [
+      "/dist"
+    ]
+  }
