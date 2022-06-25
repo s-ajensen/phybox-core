@@ -1,6 +1,6 @@
 import type { Steppable } from "../interfaces/Steppable";
 
-export default class SimulationContext {
+export class SimulationContext {
     canvas: HTMLCanvasElement;
     ctx: CanvasRenderingContext2D;
     objects: Steppable[];
