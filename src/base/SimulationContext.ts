@@ -1,8 +1,9 @@
 import type { Steppable } from "../interfaces/Steppable";
+import { PhyCanvasRenderingContext2D } from "./PhyCanvasRenderingContext2D";
 
 export class SimulationContext {
     canvas: HTMLCanvasElement;
-    ctx: CanvasRenderingContext2D;
+    ctx: PhyCanvasRenderingContext2D;
     objects: Steppable[];
 
     constructor(canvas: HTMLCanvasElement) {
@@ -13,7 +14,7 @@ export class SimulationContext {
         }
 
         this.canvas = canvas;
-        this.ctx = context;
+        this.ctx = new PhyCanvasRenderingContext2D(context);
         this.objects = [];
     }
 
@@ -24,6 +25,7 @@ export class SimulationContext {
     }
 
     update(deltaTime: number) {
+        this.ctx.clear();
         this.objects.forEach((obj) => {
             obj.update(deltaTime);
         })

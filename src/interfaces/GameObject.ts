@@ -2,20 +2,25 @@ import type { Steppable } from "./Steppable";
 import type { Component } from "./Component";
 import { Drawable } from "./Drawable";
 import { SimulationContext } from "../base/SimulationContext";
+import { PhyCanvasRenderingContext2D } from "../base/PhyCanvasRenderingContext2D";
 
 export abstract class GameObject implements Steppable, Drawable {
     name: string;
     simContext: SimulationContext;
+    canvasContext: CanvasRenderingContext2D;
     components: Component[];
 
     constructor(name: string, simContext: SimulationContext) {
         this.name = name;
         this.simContext = simContext;
+        this.canvasContext = simContext.ctx.ctx;
         this.components = [];
     }
 
     abstract start(): void;
-    abstract update(deltaTime: number): void;
+    update(deltaTime: number): void {
+        this.draw(deltaTime);
+    }
     abstract stop(): void;
     abstract draw(deltaTime: number): void;
 
