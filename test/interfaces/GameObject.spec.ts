@@ -4,6 +4,7 @@ import { mock } from "ts-mockito";
 import { expect } from "chai";
 
 class ConcreteGameObj extends GameObject {
+    draw(deltaTime: number){};
     start(){};
     update(){};
     stop(){};
@@ -19,7 +20,7 @@ describe("GameObject.addComponent() tests", () => {
             stop(){};
         };
 
-        objMock = new ConcreteGameObj("Game Object");
+        objMock = new ConcreteGameObj("Game Object", null);
         let componentMock:Component = objMock.addComponent(B);
 
         expect(componentMock).to.equal(objMock.components[0]);
@@ -38,7 +39,7 @@ describe("GameObject.addComponent() tests", () => {
             stop(){};
         };
 
-        objMock = new ConcreteGameObj("Game Object")
+        objMock = new ConcreteGameObj("Game Object", null)
         let componentMock:Component = objMock.addComponent(B, "Component Member");
 
         expect(componentMock).to.equal(objMock.components[0]);
@@ -67,7 +68,7 @@ describe("GameObject.getComponent() tests", () => {
     }
 
     it("Ensures that getComponent() returns object of subtype", () => {
-        objMock = new ConcreteGameObj("Game Object");
+        objMock = new ConcreteGameObj("Game Object", null);
         let componentMock1_1:Component = objMock.addComponent(Component1);
         let componentMock1_2:Component = objMock.addComponent(Component1);
         let componentMock2_1:Component = objMock.addComponent(Component2);
@@ -77,7 +78,7 @@ describe("GameObject.getComponent() tests", () => {
     });
 
     it("Ensures that getComponent() reurns null when component of type is not found", () => {
-        objMock = new ConcreteGameObj("Game Object");
+        objMock = new ConcreteGameObj("Game Object", null);
 
         expect(objMock.getComponent(Component1)).to.be.null;
     });
